@@ -1,0 +1,55 @@
+let mapleader=","
+
+set so=7
+
+set ideajoin=true
+set ideamarks=true
+set clipboard=unnamedplus
+
+set surround
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set idearefactormode
+set showmode
+
+
+set keep-english-in-normal
+set keep-english-in-normal-and-restore-in-insert
+
+
+inoremap kj <Esc>
+
+nnoremap L $
+nnoremap H ^
+vnoremap L $
+vnoremap H ^
+
+nnoremap ' `
+nnoremap ` '
+noremap  ; :
+
+noremap <silent><leader>/ :nohls<CR>
+
+
+nnoremap gh :action Back<CR>
+nnoremap gl :action Forward<CR>
+
+nnoremap gp :action JumpToLastChange<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+
+nnoremap gz :action ToggleZenMode<CR>
+
+
+nnoremap U :action FindUsages<CR>
+nnoremap R :action RenameElement<CR>
+
+nnoremap lb :action Git.Branches<CR>
+nnoremap lc :action Vcs.Show.Local.Changes<CR>
+
+nnoremap OC :action ManageRecentProjects<CR>
+nnoremap nt :action ActivateTerminalToolWindow<CR>
+nnoremap Nt :action Terminal.OpenInTerminal<CR>

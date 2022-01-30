@@ -32,8 +32,8 @@ let g:netrw_localrmdir = 'trash'     " 默认的删除工具使用 trash
 " setting for autoswitch-inputmehtod. see: https://github.com/lyokha/vim-xkbswitch
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchNLayout = 'us'
-let g:XkbSwitchIMappings = ['Qingg']                         " 可通过xkbswitch -ge获取layout名称
-let g:XkbSwitchIMappingsTr = {'Qingg': {'<': '', '>': ''}}   " 需要与IMappings配合设置,否则报错
+let g:XkbSwitchIMappings = ['Rime']                         " 可通过xkbswitch -ge获取layout名称
+let g:XkbSwitchIMappingsTr = {'Rime': {'<': '', '>': ''}}   " 需要与IMappings配合设置,否则报错
 
 " syntax
 syntax on
@@ -43,6 +43,9 @@ set history=2000
 
 " filetype
 filetype on
+
+" use the system clipboard
+set clipboard^=unnamed,unnamedplu
 
 " Enable filetype plugins
 filetype plugin on
@@ -107,6 +110,9 @@ set softtabstop=4                " insert mode tab and backspace use 4 spaces
 set foldenable
 set foldmethod=indent
 set foldlevel=99
+
+" fzf key complete
+set rtp+=/opt/homebrew/opt/fzf
 
 let g:FoldMethod = 0
 map <leader>zz :call ToggleFold()<cr>
@@ -293,3 +299,7 @@ cnoremap <C-j> <t_kd>
 cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>

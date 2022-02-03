@@ -9,7 +9,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " Insert与Normal模式下，自动切换输入法 
-Plug 'lyokha/vim-xkbswitch'        
+Plug 'lyokha/vim-xkbswitch',{'as':'kbswitch'}        
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-unimpaired'
 Plug 'mg979/vim-visual-multi'
@@ -31,6 +31,9 @@ let g:netrw_localrmdir = 'trash'     " 默认的删除工具使用 trash
 
 " setting for autoswitch-inputmehtod. see: https://github.com/lyokha/vim-xkbswitch
 let g:XkbSwitchEnabled = 1
+" https://github.com/vovkasm/input-source-switcher
+let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
+let g:XkbSwitchKeymapNames = {'us' : 'com.apple.keylayout.ABC', 'rime' : 'im.rime.inputmethod.Squirrel.Rime'}
 let g:XkbSwitchNLayout = 'us'
 let g:XkbSwitchIMappings = ['Rime']                         " 可通过xkbswitch -ge获取layout名称
 let g:XkbSwitchIMappingsTr = {'Rime': {'<': '', '>': ''}}   " 需要与IMappings配合设置,否则报错
@@ -41,11 +44,11 @@ syntax on
 " history : how many lines of history VIM has to remember
 set history=2000
 
-" filetype
-filetype on
-
 " use the system clipboard
 set clipboard^=unnamed,unnamedplu
+
+" filetype
+filetype on
 
 " Enable filetype plugins
 filetype plugin on

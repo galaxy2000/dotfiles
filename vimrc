@@ -45,7 +45,7 @@ syntax on
 set history=2000
 
 " use the system clipboard
-set clipboard^=unnamed,unnamedplu
+set clipboard^=unnamed,unnamedplus
 
 " filetype
 filetype on

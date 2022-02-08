@@ -1,0 +1,2 @@
+use_release_candidates = yes
+java_macos_integration_enable = yes

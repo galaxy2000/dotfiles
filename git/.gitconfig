@@ -1,0 +1,13 @@
+[core]
+	autocrlf = input
+	excludesfile = /Users/darren/.gitignore_global
+
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
+[user]
+	name = galaxy2000
+	email = gentleman.gao@gmail.com

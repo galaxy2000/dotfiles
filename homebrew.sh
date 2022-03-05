@@ -129,7 +129,7 @@ function brew_install_formulas() {
   if [ ${#formulas[@]} -gt 0 ]; then
     for formula in "${formulas[@]}"; do
       echo "brew install ${formula}"
-      # brew install "$formula"
+      brew install "$formula"
     done
   fi
 }
@@ -140,7 +140,7 @@ function brew_install_casks() {
   if [ ${#casks[@]} -gt 0 ]; then
     for cask in "${casks[@]}"; do
       echo "brew install --cask ${cask}"
-      # brew install --cask "$cask"
+      brew install --cask "$cask"
     done
   fi
 }

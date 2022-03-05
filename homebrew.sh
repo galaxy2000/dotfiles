@@ -1,4 +1,5 @@
 #!/bin/bash
+
 function setting_mirror_source() {
   local tsinghua_mirrors="https://mirrors.tuna.tsinghua.edu.cn"
   local brew_bottles="export HOMEBREW_BOTTLE_DOMAIN=\"$tsinghua_mirrors/homebrew-bottles\""
@@ -32,17 +33,21 @@ fi
 # Init shell env
 zprofile="$HOME/.zprofile"
 if [[ ! -f "$zprofile" ]]; then
+  echo "touch .zprofile $HOME/.zprofile"
   touch "$zprofile"
 fi
-setting_mirror_source "$zprofile"
-test -r "$zprofile" && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>"$zprofile"
+if [ $(grep -c "/bin/brew shellenv" "$zprofile") -eq 0 ]; then
+  echo "Setting Homebrew mirrors sources to $HOME/.zprofile"
+  setting_mirror_source "$zprofile"
+  test -r "$zprofile" && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>"$zprofile"
+fi
 
 # Updating Homebrew
-echo "Updating Homebrew"
+echo "Updating Homebrew..."
 brew update
 
-# Install formula
-formula=(
+# Install formulas
+formulas=(
   aria2
   asdf
   autoconf
@@ -106,10 +111,45 @@ function getDiff() {
   left=$1
   right=$2
   local diff_result=()
-  for item in ${left[*]}; do
-    if [[ ! ${right[*]} =~ ${item} ]]; then
-      diff_result=("${diff_result[@]}" "$item")
-    fi
-  done
+  if [ ${#right[@]} -gt 0 ]; then
+    for item in ${left[*]}; do
+      if [[ ! ${right[*]} =~ ${item} ]]; then
+        diff_result=("${diff_result[@]}" "$item")
+      fi
+    done
+  else
+    diff_result=$left
+  fi
   [[ "$left" ]] && echo "${diff_result[@]}"
 }
+
+function brew_install_formulas() {
+  formulas=($(getDiff "${formulas[*]}" "$(brew list --formula -1)"))
+  echo "Installing Homebrew formulas: ${formulas[*]}"
+  if [ ${#formulas[@]} -gt 0 ]; then
+    for formula in "${formulas[@]}"; do
+      echo "brew install ${formula}"
+      # brew install "$formula"
+    done
+  fi
+}
+
+function brew_install_casks() {
+  casks=($(getDiff "${casks[*]}" "$(brew list --casks -1)"))
+  echo "Installing Homebrew casks: ${casks[*]}"
+  if [ ${#casks[@]} -gt 0 ]; then
+    for cask in "${casks[@]}"; do
+      echo "brew install --cask ${cask}"
+      # brew install --cask "$cask"
+    done
+  fi
+}
+
+function brew_cleanup() {
+  echo "brew cleanup ...."
+  brew cleanup
+}
+
+brew_install_formulas
+brew_install_casks
+brew_cleanup

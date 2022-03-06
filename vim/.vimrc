@@ -48,10 +48,8 @@ set history=2000
 " use the system clipboard
 set clipboard^=unnamed,unnamedplus
 
-" filetype
+" Enable filetype and plugin
 filetype on
-
-" Enable filetype plugins
 filetype plugin on
 filetype indent on
 
@@ -71,24 +69,28 @@ set visualbell t_vb=            " turn off error beep/flash
 set t_vb=
 set tm=500
 
-
 " show location
 set cursorcolumn
 set cursorline
 
-
 " movement
 set scrolloff=7                 " keep 7 lines when scrolling
-
 
 " show
 set ruler                       " show the current row and column
 set number                      " show line numbers
-set nowrap
+set relativenumber              " use relative line numbers.
+set nowrap                      " disable line wrap
 set showcmd                     " display incomplete commands
 set showmode                    " display current modes
 set showmatch                   " jump to matches when entering parentheses
 set matchtime=2                 " tenths of a second to show the matching parenthesis
+
+augroup auto_switch_run         " show absolute numbers in insert mode, otherwise relative line numbers.
+    autocmd!
+    autocmd insertenter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
+augroup END
 
 
 " search
@@ -144,7 +146,9 @@ set selection=inclusive
 set selectmode=mouse,key
 
 set completeopt=longest,menu
-set wildmenu                           " show a navigable menu for tab completion"
+
+" show a navigable menu for tab completion
+set wildmenu
 set wildmode=longest,list,full
 set wildignore=*.o,*~,*.pyc,*.class
 
@@ -167,16 +171,10 @@ set background=dark
 " setting different theme for mac_vim
 if has("gui_running")
     colorscheme  onedark
-else   
+    set guifont=Monaco:h14
+else
     colorscheme  solarized
 endif
-
-
-" set fontsiz for macvim
-if has("gui_running")
-    set guifont=Monaco:h14
-endif
-
 
 " set mark column color
 hi! link SignColumn   LineNr
@@ -239,7 +237,7 @@ map <C-l> <C-W>l
 
 " kj 替换 Esc
 inoremap kj <Esc>
-
+cnoremap kj <Esc>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
@@ -304,7 +302,11 @@ cnoremap <C-j> <t_kd>
 cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+inoremap <C-d> <DELETE>

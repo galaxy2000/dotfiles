@@ -44,6 +44,7 @@ fi
 
 # Updating Homebrew
 echo "Updating Homebrew..."
+brew doctor
 brew update
 
 # Install formulas
@@ -87,6 +88,7 @@ casks=(
   caffeine
   cheatsheet
   docker
+  dozer
   gas-mask
   go2shell
   iterm2
@@ -111,15 +113,11 @@ function getDiff() {
   left=$1
   right=$2
   local diff_result=()
-  if [ ${#right[@]} -gt 0 ]; then
-    for item in ${left[*]}; do
-      if [[ ! ${right[*]} =~ ${item} ]]; then
-        diff_result=("${diff_result[@]}" "$item")
-      fi
-    done
-  else
-    diff_result=$left
-  fi
+  for item in ${left[*]}; do
+    if [[ ! ${right[*]} =~ ${item} ]]; then
+      diff_result=("${diff_result[@]}" "$item")
+    fi
+  done
   [[ "$left" ]] && echo "${diff_result[@]}"
 }
 

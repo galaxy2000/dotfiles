@@ -9,6 +9,21 @@ export HOMEBREW_NO_ANALYTICS=1
 # time that oh-my-zsh is loaded.
 ZSH_THEME="af-magic"
 
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
 # Uncomment the following line to enable command auto-correction.
  ENABLE_CORRECTION="true"
 
@@ -67,6 +82,7 @@ export LANG=en_US.UTF-8
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 export GOROOT=$(dirname "$(dirname "$(asdf which go)")")
+export GOPROXY="https://goproxy.cn,https://mirrors.aliyun.com/goproxy,direct"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -76,5 +92,7 @@ export GOROOT=$(dirname "$(dirname "$(asdf which go)")")
 # Example aliases
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
+
+[ -f ~/.extensional.zsh ] && source ~/.extensional.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

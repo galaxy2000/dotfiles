@@ -58,13 +58,11 @@ formulas=(
   brew-cask-completion
   ca-certificates
   cmake
-  docker-machine
-  docker-machine-driver-hyperkit
   fd
   fzf
   git
   git-extras
-  gradle
+  hyperkit
   highlight
   kubernetes-cli
   minikube
@@ -129,7 +127,7 @@ function brew_install_formulas() {
       echo "-----------------------------------------------"
       echo "brew install ${formula}"
       echo "-----------------------------------------------"
-      brew install "$formula"    
+      brew install "$formula"
     done
   fi
 }
@@ -148,7 +146,9 @@ function brew_install_casks() {
 }
 
 function brew_cleanup() {
+  echo "-----------------------------------------------"
   echo "brew cleanup ...."
+  echo "-----------------------------------------------"
   brew cleanup
 }
 

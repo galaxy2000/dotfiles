@@ -67,7 +67,6 @@ formulas=(
   gradle
   highlight
   kubernetes-cli
-  macvim
   minikube
   mmv
   ohcount
@@ -92,6 +91,7 @@ casks=(
   gas-mask
   go2shell
   iterm2
+  macvim
   mos
   qlcolorcode
   qlimagesize
@@ -126,8 +126,10 @@ function brew_install_formulas() {
   echo "Installing Homebrew formulas: ${formulas[*]}"
   if [ ${#formulas[@]} -gt 0 ]; then
     for formula in "${formulas[@]}"; do
+      echo "-----------------------------------------------"
       echo "brew install ${formula}"
-      brew install "$formula"
+      echo "-----------------------------------------------"
+      brew install "$formula"    
     done
   fi
 }
@@ -137,7 +139,9 @@ function brew_install_casks() {
   echo "Installing Homebrew casks: ${casks[*]}"
   if [ ${#casks[@]} -gt 0 ]; then
     for cask in "${casks[@]}"; do
+      echo "-----------------------------------------------"
       echo "brew install --cask ${cask}"
+      echo "-----------------------------------------------"
       brew install --cask "$cask"
     done
   fi

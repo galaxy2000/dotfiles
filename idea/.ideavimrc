@@ -1,33 +1,22 @@
-let mapleader=","
-
-set so=7
+source ~/.vimrc
 
 set ideajoin=true
 set ideamarks=true
-set clipboard=unnamedplus
+set ideastatusicon
+set ideavimsupport
+set idearefactormode
 
 set surround
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set idearefactormode
-set showmode
-
-
 set keep-english-in-normal
 set keep-english-in-normal-and-restore-in-insert
 
-inoremap kj <Esc>
-nnoremap L $
-nnoremap H ^
-vnoremap H ^
-vnoremap L $
-nnoremap ; :
-nnoremap ' `
-nnoremap ` '
+nnoremap <silent><leader>, :nohls<CR>
 
-noremap <silent><leader>/ :nohls<CR>
+nnoremap == :action ReformatCode<CR>
+vnoremap == :action ReformatCode<CR>
+
+nnoremap go :action OptimizeImports<CR>
+vnoremap go :action OptimizeImports<CR>
 
 nnoremap ,a :action GotoAction<CR>
 vnoremap ,a :action GotoAction<CR>
